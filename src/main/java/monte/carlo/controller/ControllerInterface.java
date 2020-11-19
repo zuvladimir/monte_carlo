@@ -1,10 +1,10 @@
-package monte.carlo;
+package monte.carlo.controller;
 
 /**
  * Интерфейс контроллера
  */
 public interface ControllerInterface {
-    public void calcRiskOfLaborCosts();
+    public void calcRiskOfWorkingHoursEncrease();
     public void calcRiskOfLaborResources();
     public void calcRiskOfExcessWork();
 }

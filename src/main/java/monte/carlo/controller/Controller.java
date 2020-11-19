@@ -1,11 +1,16 @@
-package monte.carlo;
+package monte.carlo.controller;
+
+import monte.carlo.view.View;
+import monte.carlo.model.Model;
+import monte.carlo.model.ModelInterface;
+import monte.carlo.model.workinghoursencrease.RiskOfWorkingHoursEncrease;
 
 /**
  * Класс контроллера
  * 
  */
 public class Controller implements ControllerInterface {
-    private Model model;
+    private ModelInterface model;
     private View view;
 
     public Controller(Model model) {
@@ -16,17 +21,17 @@ public class Controller implements ControllerInterface {
 
     /**
      * Расчет риска превышения трудозатрат
-     * 
      */
     @Override
-    public void calcRiskOfLaborCosts() {
-        model.setTotalTests(view.getTotalTest());
-        model.calcRiskOfLaborCosts();
+    public void calcRiskOfWorkingHoursEncrease() {
+        model.setTotalTests(view.getQuantityOfTests());
+        RiskOfWorkingHoursEncrease riskOfWorkingHoursEncrease = model.getRiskOfWorkingHoursEncrease();
+        riskOfWorkingHoursEncrease.setPlannedWorkingHours(view.getPlannedWorkingHours());
+        model.calcRiskOfWorkingHoursEncrease();
     }
 
     /**
      * Расчет риска недостатка трудовых ресурсов
-     * 
      */
     @Override
     public void calcRiskOfLaborResources() {
@@ -35,7 +40,6 @@ public class Controller implements ControllerInterface {
 
     /**
      * Расчет риска превышения объема работ
-     * 
      */
     @Override
     public void calcRiskOfExcessWork() {
@@ -43,4 +47,5 @@ public class Controller implements ControllerInterface {
     }
 
     
+
 }
