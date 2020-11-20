@@ -17,6 +17,9 @@ public class Model implements ModelInterface, Serializable {
     // Общее число испытаний
     private int totalTest;
     
+    // Принятое решение
+    private String decision;
+    
     // Риск превышения трудозатрат
     private RiskOfWorkingHoursEncrease riskOfWorkingHoursEncrease;
     
@@ -72,6 +75,12 @@ public class Model implements ModelInterface, Serializable {
             observer.updateRiskOfWorkloadEncrease();
         });
     }
+    
+    public void notifyDecisionObservers() {
+        observers.forEach((observer) -> {
+            observer.updateDecision();
+        });
+    }
 
     @Override
     public RiskOfWorkingHoursEncrease getRiskOfWorkingHoursEncrease() {
@@ -102,5 +111,77 @@ public class Model implements ModelInterface, Serializable {
     public void setTotalTests(int totalTest) {
         this.totalTest = totalTest;
     }
+
+    /**
+     * Алгоритм выбора вариантов обработки рисков для поддержки принятия решений 
+     */
+    @Override
+    public void makeDecisionAlgorithm() {
+        double chanceOfWorkingHoursEncrease = riskOfWorkingHoursEncrease.getChanceOfWorkingHoursEncrease();
+        double chanceOfLackResources = riskOfLackResources.getChanceOfLackResources();
+        double chanceOfWorkloadEncrease = riskOfWorkloadEncrease.getChanceOfWorkloadEncrease();
+        
+        if (chanceOfWorkingHoursEncrease > 0D) {
+            if (chanceOfWorkingHoursEncrease > 50D) {
+                decision = Decision.DO_NOT_CONTINUE.getLabel();
+            } else if (chanceOfWorkingHoursEncrease <= 10D) {
+                decision = Decision.START.getLabel();
+            } else if (chanceOfWorkingHoursEncrease > 10D && chanceOfWorkingHoursEncrease <= 50D) {
+                decision = Decision.ENCREASE_WORKING_HOURS.getLabel();
+            } else {
+                decision = Decision.DO_NOT_CONTINUE.getLabel();
+            }
+        } else if (chanceOfLackResources > 0D) {
+            if (chanceOfLackResources > 70D) {
+                decision = Decision.DO_NOT_START.getLabel();
+            } else if (chanceOfLackResources <= 30D) {
+                decision = Decision.START.getLabel();
+            } else if (chanceOfLackResources > 30 && chanceOfLackResources <= 70) {
+                decision = Decision.ENCREASE_RESOURCES.getLabel();
+            } else {
+                decision = Decision.DO_NOT_START.getLabel();
+            }
+        } else if (chanceOfWorkloadEncrease > 0D) {
+            if (chanceOfWorkloadEncrease > 70D) {
+                decision = Decision.DO_NOT_CONTINUE.getLabel();
+            } else if (chanceOfWorkloadEncrease <= 30D) {
+                decision = Decision.START.getLabel();
+            } else if (chanceOfWorkloadEncrease > 30D && chanceOfWorkloadEncrease <= 70D 
+                    && chanceOfWorkingHoursEncrease <= 10) {
+                decision = Decision.START.getLabel();
+            } else {
+                decision = Decision.DO_NOT_CONTINUE.getLabel();
+            }
+        } else {
+            decision = Decision.START.getLabel();
+        }
+        notifyDecisionObservers();
+    }
     
+    /**
+     * Варианты решений
+     */
+    private enum Decision {
+        START("Принять риск и начать деятельность."),
+        DO_NOT_START("Непримелимый риск. Не начинать деятельность."),
+        DO_NOT_CONTINUE("Непримелимый риск. Не продолжать деятельность."),
+        ENCREASE_WORKING_HOURS("Пересмотреть модель данных и увеличить запланированные трудозатраты."),
+        ENCREASE_RESOURCES("Принять риск. Привлечь к работам подрядные организации с целью разделить риск.");
+        
+        private String label;
+        
+        Decision(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
+    @Override
+    public String getDecision() {
+        return decision;
+    }
+
 }

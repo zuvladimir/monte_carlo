@@ -7,4 +7,5 @@ public interface ControllerInterface {
     public void calcRiskOfWorkingHoursEncrease();
     public void calcRiskOfLackResources();
     public void calcRiskOfWorkloadEncrease();
+    public void makeDecisionAlgorithm();
 }

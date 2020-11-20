@@ -54,4 +54,9 @@ public class Controller implements ControllerInterface {
         model.calcRiskOfWorkloadEncrease();
     }
 
+    @Override
+    public void makeDecisionAlgorithm() {
+        model.makeDecisionAlgorithm();
+    }
+
 }

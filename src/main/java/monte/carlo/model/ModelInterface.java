@@ -7,7 +7,8 @@ import monte.carlo.view.ViewObserver;
  */
 public interface ModelInterface {
     public void initialize();
-    public void setTotalTests(int totalTest);    
+    public void setTotalTests(int totalTest);
+    public String getDecision();
     public void calcRiskOfWorkingHoursEncrease();
     public RiskOfWorkingHoursEncrease getRiskOfWorkingHoursEncrease();
     public void calcRiskOfLackResources();
@@ -16,4 +17,5 @@ public interface ModelInterface {
     public RiskOfWorkloadEncrease getRiskOfWorkloadEncrease();
     public void registerObserver(ViewObserver o);
     public void removeObserver(ViewObserver o);
+    public void makeDecisionAlgorithm();
 }

@@ -7,4 +7,5 @@ public interface ViewObserver {
     public void updateRiskOfWorkingHoursEncrease();
     public void updateRiskOfLackResources();
     public void updateRiskOfWorkloadEncrease();
+    public void updateDecision();
 }

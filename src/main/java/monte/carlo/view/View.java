@@ -88,6 +88,22 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         jScrollPane3 = new javax.swing.JScrollPane();
         riskOfWorkloadEncreaseTable = new monte.carlo.ui.table.RiskOfWorkloadEncreaseTable();
         jPanel4 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        sendEmail = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        makeDecision = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        decisionText = new javax.swing.JTextArea();
+        jLabel12 = new javax.swing.JLabel();
+        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Программа поддержки принятия решений при внедрении ERP");
@@ -344,16 +360,143 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         jTabbedPane1.addTab("Обьём работ", null, jPanel3, "");
         jPanel3.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Параметры", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+
+        jLabel8.setText("Вероятность превышения трудозатрат, %");
+
+        jTextField4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField4.setEnabled(false);
+
+        jLabel9.setText("Вероятность нехватки трудовых ресурсов, %");
+
+        jTextField5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField5.setEnabled(false);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Вероятность превышения обьёма работ, %");
+
+        jTextField6.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField6.setEnabled(false);
+
+        email.setText("devprog9@gmail.com");
+
+        jLabel11.setText("Email адрес рассылки");
+
+        sendEmail.setText("Отправить");
+        sendEmail.setToolTipText("Выслать принятое решение на указанный email");
+        sendEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendEmailActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sendEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
+
+        jPanel4.add(jPanel8, java.awt.BorderLayout.NORTH);
+
+        makeDecision.setText("Принять решение");
+        makeDecision.setToolTipText("Принять решение");
+        makeDecision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeDecisionActionPerformed(evt);
+            }
+        });
+
+        decisionText.setColumns(20);
+        decisionText.setRows(5);
+        jScrollPane1.setViewportView(decisionText);
+
+        jLabel12.setText("Принятое решение");
+
+        save.setText("Сохранить");
+        save.setToolTipText("Сохранить результат принятого решения в базе данных");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addComponent(makeDecision, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 307, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(makeDecision)
+                    .addComponent(save))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel4.add(jPanel16, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Принятие решений", null, jPanel4, "");
         jPanel4.getAccessibleContext().setAccessibleName("");
@@ -399,11 +542,25 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         distributionGraphic.getContentPane().add(chartRenderer.createChartPanel());
         distributionGraphic.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void sendEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendEmailActionPerformed
+
+    private void makeDecisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDecisionActionPerformed
+        controller.makeDecisionAlgorithm();
+    }//GEN-LAST:event_makeDecisionActionPerformed
     
     @Override
     public void updateRiskOfWorkingHoursEncrease() {
         RiskOfWorkingHoursEncrease riskOfWorkingHoursEncrease = model.getRiskOfWorkingHoursEncrease();
-        jTextField2.setText(String.format("%.2f", riskOfWorkingHoursEncrease.getChanceOfWorkingHoursEncrease()));
+        String txt = String.format("%.2f", riskOfWorkingHoursEncrease.getChanceOfWorkingHoursEncrease());
+        jTextField2.setText(txt);
+        jTextField4.setText(txt);
         RiskOfWorkingHoursEncreaseTable table = (RiskOfWorkingHoursEncreaseTable)riskOfWorkingHoursEncreaseTable;
         table.reload(riskOfWorkingHoursEncrease.getRiskOfWorkingHoursEncreaseList());
     }
@@ -411,7 +568,9 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     @Override
     public void updateRiskOfLackResources() {
         RiskOfLackResources riskOfLackResources = model.getRiskOfLackResources();
-        jTextField1.setText(String.format("%.2f", riskOfLackResources.getChanceOfLackResources()));
+        String txt = String.format("%.2f", riskOfLackResources.getChanceOfLackResources());
+        jTextField1.setText(txt);
+        jTextField5.setText(txt);        
         RiskOfLackResourcesTable table = (RiskOfLackResourcesTable)riskOfLackResourcesTable;
         table.reload(riskOfLackResources.getRiskOfLackResourcesList());
     }
@@ -419,11 +578,18 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     @Override
     public void updateRiskOfWorkloadEncrease() {
         RiskOfWorkloadEncrease riskOfWorkloadEncrease = model.getRiskOfWorkloadEncrease();
-        jTextField3.setText(String.format("%.2f", riskOfWorkloadEncrease.getChanceOfWorkloadEncrease()));
+        String txt = String.format("%.2f", riskOfWorkloadEncrease.getChanceOfWorkloadEncrease());
+        jTextField3.setText(txt);
+        jTextField6.setText(txt);
         RiskOfWorkloadEncreaseTable table = (RiskOfWorkloadEncreaseTable)riskOfWorkloadEncreaseTable;
         table.reload(riskOfWorkloadEncrease.getRiskOfWorkloadEncreaseList());
     }
 
+    @Override
+    public void updateDecision() {
+        decisionText.setText(model.getDecision());
+    }
+    
     /**
      * Кол-во испытаний
      * @return quantity of tests
@@ -445,6 +611,8 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea decisionText;
+    private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -452,12 +620,17 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -465,13 +638,16 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -483,9 +659,17 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JButton makeDecision;
     private javax.swing.JTable riskOfLackResourcesTable;
     private javax.swing.JTable riskOfWorkingHoursEncreaseTable;
     private javax.swing.JTable riskOfWorkloadEncreaseTable;
+    private javax.swing.JButton save;
+    private javax.swing.JButton sendEmail;
     // End of variables declaration//GEN-END:variables
+
+    
 
 }
