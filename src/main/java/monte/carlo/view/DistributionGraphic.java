@@ -24,10 +24,9 @@ public class DistributionGraphic extends javax.swing.JFrame {
 
         setTitle("График распределения");
         setMaximumSize(new java.awt.Dimension(800, 800));
-        setMinimumSize(new java.awt.Dimension(300, 300));
+        setMinimumSize(new java.awt.Dimension(600, 400));
         setName("distributionGraphic"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(800, 800));
-        setSize(new java.awt.Dimension(400, 400));
+        setSize(new java.awt.Dimension(600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

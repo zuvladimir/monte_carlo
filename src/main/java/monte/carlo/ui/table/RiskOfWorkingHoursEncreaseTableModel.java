@@ -1,11 +1,11 @@
-package monte.carlo.riskofworkinghoursencrease.ui.table;
+package monte.carlo.ui.table;
 
-import monte.carlo.model.workinghoursencrease.RiskOfWorkingHoursEncrease;
+import monte.carlo.model.RiskOfWorkingHoursEncrease;
 import java.util.ArrayList;
 import java.util.List;
-import monte.carlo.ui.table.AbstractTableModel;
+import monte.carlo.model.RiskInterface;
 
-public class RiskOfWorkingHoursEncreaseTableModel extends AbstractTableModel<RiskOfWorkingHoursEncrease> {
+public class RiskOfWorkingHoursEncreaseTableModel extends AbstractTableModel<RiskInterface> {
     private static final long serialVersionUID = 1L;
     
     private static final String COL_NAME_0 = "№ исп.";
@@ -14,7 +14,7 @@ public class RiskOfWorkingHoursEncreaseTableModel extends AbstractTableModel<Ris
     private static final String COL_NAME_3 = "Тестирование, ч.";
     private static final String COL_NAME_4 = "Вероятность, %";
     
-    private List<RiskOfWorkingHoursEncrease> items;
+    private List<RiskInterface> items;
 
     private final List<String> colNames = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class RiskOfWorkingHoursEncreaseTableModel extends AbstractTableModel<Ris
     }
 
     @Override
-    public void reload(List<RiskOfWorkingHoursEncrease> items) {
+    public void reload(List<RiskInterface> items) {
         this.items = items;
         fireTableDataChanged();
     }
@@ -68,7 +68,7 @@ public class RiskOfWorkingHoursEncreaseTableModel extends AbstractTableModel<Ris
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        RiskOfWorkingHoursEncrease item = items.get(rowIndex);
+        RiskOfWorkingHoursEncrease item = (RiskOfWorkingHoursEncrease)items.get(rowIndex);
         String colName = colNames.get(columnIndex);
         if (null != colName) switch (colName) {
             case COL_NAME_0:

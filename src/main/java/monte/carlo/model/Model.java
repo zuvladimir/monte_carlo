@@ -1,9 +1,7 @@
 package monte.carlo.model;
 
-import monte.carlo.model.workinghoursencrease.RiskOfWorkingHoursEncrease;
 import java.io.Serializable;
 import java.util.ArrayList;
-import monte.carlo.utils.Utils;
 import monte.carlo.view.ViewObserver;
 
 /**
@@ -14,69 +12,80 @@ import monte.carlo.view.ViewObserver;
  */
 public class Model implements ModelInterface, Serializable {
 
-    private ArrayList<ViewObserver> observers = new ArrayList<>();
+    private final ArrayList<ViewObserver> observers = new ArrayList<>();
     
     // Общее число испытаний
     private int totalTest;
     
     // Риск превышения трудозатрат
     private RiskOfWorkingHoursEncrease riskOfWorkingHoursEncrease;
+    
+    // Риск недостатка трудовых ресурсов
+    private RiskOfLackResources riskOfLackResources;
+    
+    // Риск превышения обьема работ
+    private RiskOfWorkloadEncrease riskOfWorkloadEncrease;
 
     @Override
     public void initialize() {
         totalTest = 0;
         riskOfWorkingHoursEncrease = new RiskOfWorkingHoursEncrease();
         riskOfWorkingHoursEncrease.init();
-        
+        riskOfLackResources = new RiskOfLackResources();
+        riskOfLackResources.init();
+        riskOfWorkloadEncrease = new RiskOfWorkloadEncrease();
+        riskOfWorkloadEncrease.init();
     }
 
-    /**
-     * Алгоритм Расчет риска превышения трудозатрат
-     */
     @Override
     public void calcRiskOfWorkingHoursEncrease() {
-        // Числов испытаний с превышением трудозатрат
-        int j = 0;
-        riskOfWorkingHoursEncrease.getRiskOfWorkingHoursEncreaseList().clear();
-        for (int i = 0; i < totalTest; i++) {
-            RiskOfWorkingHoursEncrease item = new RiskOfWorkingHoursEncrease();
-            item.setId( i + 1 );
-            item.setTechnicalTask(Utils.getValueFromDistribution(riskOfWorkingHoursEncrease.getDistTechnicalTask()));
-            item.setDevelopment(Utils.getValueFromDistribution(riskOfWorkingHoursEncrease.getDistDevelopment()));
-            item.setTesting(Utils.getValueFromDistribution(riskOfWorkingHoursEncrease.getDistTesting()));
-            // Фактические трудозатраты
-            int totalSpentHours = item.getTechnicalTask() + item.getDevelopment() + item.getTesting();
-            if (totalSpentHours > riskOfWorkingHoursEncrease.getPlannedWorkingHours()) {
-                j++;
-            }
-            item.setChanceOfWorkingHoursEncrease(((double)j / (double)totalTest)  * 100D);
-            riskOfWorkingHoursEncrease.getRiskOfWorkingHoursEncreaseList().add(item);
-        }
-        riskOfWorkingHoursEncrease.setChanceOfWorkingHoursEncrease(((double)j / (double)totalTest) * 100D);
+        riskOfWorkingHoursEncrease.calculate(totalTest);
         notifyRiskOfWorkingHoursEncreaseObservers();
     }
     
+    @Override
+    public void calcRiskOfLackResources() {
+        riskOfLackResources.calculate(totalTest);
+        notifyRiskOfLackResourcesObservers();
+    }
+    
+    @Override
+    public void calcRiskOfWorkloadEncrease() {
+        riskOfWorkloadEncrease.calculate(totalTest);
+        notifyRiskOfWorkloadEncreaseObservers();
+    }
+
     public void notifyRiskOfWorkingHoursEncreaseObservers() {
         observers.forEach((observer) -> {
             observer.updateRiskOfWorkingHoursEncrease();
         });
     }
-    
-    public void notifyLaborResourcesObservers() {
+
+    public void notifyRiskOfLackResourcesObservers() {
         observers.forEach((observer) -> {
-            observer.updateRiskOfLaborResources();
+            observer.updateRiskOfLackResources();
         });
     }
     
-    public void notifyExcessWorkObservers() {
+    public void notifyRiskOfWorkloadEncreaseObservers() {
         observers.forEach((observer) -> {
-            observer.updateRiskOfExcessWork();
+            observer.updateRiskOfWorkloadEncrease();
         });
     }
 
     @Override
     public RiskOfWorkingHoursEncrease getRiskOfWorkingHoursEncrease() {
         return riskOfWorkingHoursEncrease;
+    }
+    
+    @Override
+    public RiskOfLackResources getRiskOfLackResources() {
+        return riskOfLackResources;
+    }
+    
+    @Override
+    public RiskOfWorkloadEncrease getRiskOfWorkloadEncrease() {
+        return riskOfWorkloadEncrease;
     }
     
     @Override

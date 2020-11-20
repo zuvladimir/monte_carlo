@@ -5,6 +5,6 @@ package monte.carlo.controller;
  */
 public interface ControllerInterface {
     public void calcRiskOfWorkingHoursEncrease();
-    public void calcRiskOfLaborResources();
-    public void calcRiskOfExcessWork();
+    public void calcRiskOfLackResources();
+    public void calcRiskOfWorkloadEncrease();
 }

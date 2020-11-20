@@ -7,7 +7,6 @@ import monte.carlo.model.Model;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * <b>Класс Main</b> - это точка входа в приложение. Приложение построено с

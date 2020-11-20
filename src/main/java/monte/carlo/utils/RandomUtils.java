@@ -2,7 +2,7 @@ package monte.carlo.utils;
 
 import java.util.Random;
 
-public class Utils {
+public class RandomUtils {
     /**
      * Генерирование статистических данных. Вместо генерирование в будущем будут
      * использоваться настоящие статистические данные.

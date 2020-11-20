@@ -3,7 +3,9 @@ package monte.carlo.controller;
 import monte.carlo.view.View;
 import monte.carlo.model.Model;
 import monte.carlo.model.ModelInterface;
-import monte.carlo.model.workinghoursencrease.RiskOfWorkingHoursEncrease;
+import monte.carlo.model.RiskOfLackResources;
+import monte.carlo.model.RiskOfWorkingHoursEncrease;
+import monte.carlo.model.RiskOfWorkloadEncrease;
 
 /**
  * Класс контроллера
@@ -34,18 +36,22 @@ public class Controller implements ControllerInterface {
      * Расчет риска недостатка трудовых ресурсов
      */
     @Override
-    public void calcRiskOfLaborResources() {
-        
+    public void calcRiskOfLackResources() {
+        model.setTotalTests(view.getQuantityOfTests());
+        RiskOfLackResources riskOfLackResources = model.getRiskOfLackResources();
+        riskOfLackResources.setPlannedResources(view.getPlannedResources());
+        model.calcRiskOfLackResources();
     }
 
     /**
      * Расчет риска превышения объема работ
      */
     @Override
-    public void calcRiskOfExcessWork() {
-        
+    public void calcRiskOfWorkloadEncrease() {
+        model.setTotalTests(view.getQuantityOfTests());
+        RiskOfWorkloadEncrease riskOfWorkloadEncrease = model.getRiskOfWorkloadEncrease();
+        riskOfWorkloadEncrease.setPlannedWorkload(view.getPlannedWorkload());
+        model.calcRiskOfWorkloadEncrease();
     }
-
-    
 
 }

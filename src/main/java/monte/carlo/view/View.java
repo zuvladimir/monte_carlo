@@ -1,10 +1,17 @@
 package monte.carlo.view;
 
+import java.awt.Toolkit;
 import monte.carlo.model.ModelInterface;
 import monte.carlo.controller.ControllerInterface;
-import monte.carlo.model.workinghoursencrease.RiskOfWorkingHoursEncrease;
-import monte.carlo.ui.chart.WorkingHoursEncreaseRendererAdapter;
-import monte.carlo.riskofworkinghoursencrease.ui.table.RiskOfWorkingHoursEncreaseTable;
+import monte.carlo.model.RiskOfLackResources;
+import monte.carlo.model.RiskOfWorkingHoursEncrease;
+import monte.carlo.model.RiskOfWorkloadEncrease;
+import monte.carlo.ui.chart.RiskOfLackResourcesChartDecorator;
+import monte.carlo.ui.chart.RiskOfWorkloadEncreaseChartDecorator;
+import monte.carlo.ui.table.RiskOfWorkingHoursEncreaseTable;
+import monte.carlo.ui.chart.WorkingHoursEncreaseChartDecorator;
+import monte.carlo.ui.table.RiskOfLackResourcesTable;
+import monte.carlo.ui.table.RiskOfWorkloadEncreaseTable;
 
 /**
  * Класс представления.
@@ -50,28 +57,49 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         jSpinner2 = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        riskOfWorkingHoursEncreaseTable = new monte.carlo.riskofworkinghoursencrease.ui.table.RiskOfWorkingHoursEncreaseTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        riskOfWorkingHoursEncreaseTable = new monte.carlo.ui.table.RiskOfWorkingHoursEncreaseTable();
         jPanel2 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinner3 = new javax.swing.JSpinner();
+        jButton4 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        riskOfLackResourcesTable = new monte.carlo.ui.table.RiskOfLackResourcesTable();
         jPanel3 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jSpinner4 = new javax.swing.JSpinner();
+        jButton2 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        riskOfWorkloadEncreaseTable = new monte.carlo.ui.table.RiskOfWorkloadEncreaseTable();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Программа поддержки принятия решений при внедрении ERP");
         setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/i32.png")));
         setMinimumSize(new java.awt.Dimension(600, 380));
         setName("mainFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 800));
-        setResizable(false);
         setSize(new java.awt.Dimension(800, 800));
         getContentPane().setLayout(new java.awt.BorderLayout(0, 3));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Общие настройки", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Настройки", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
         jPanel5.setPreferredSize(new java.awt.Dimension(300, 60));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
@@ -81,14 +109,14 @@ public class View extends javax.swing.JFrame implements ViewObserver {
 
         jSpinner1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(500, 0, 1000, 100));
-        jSpinner1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jSpinner1.setBorder(null);
+        jSpinner1.setMinimumSize(new java.awt.Dimension(72, 23));
         jSpinner1.setPreferredSize(new java.awt.Dimension(74, 23));
         jPanel5.add(jSpinner1);
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.NORTH);
         jPanel5.getAccessibleContext().setAccessibleName("");
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 3, 3, 3));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(600, 913));
@@ -102,13 +130,15 @@ public class View extends javax.swing.JFrame implements ViewObserver {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Планируемые трудозатраты");
+        jLabel1.setText("Планируемые трудозатраты, ч.");
         jLabel1.setToolTipText("");
         jPanel6.add(jLabel1);
         jLabel1.getAccessibleContext().setAccessibleName("");
 
         jSpinner2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(350, 0, 1000000, 10));
+        jSpinner2.setBorder(null);
+        jSpinner2.setMinimumSize(new java.awt.Dimension(116, 23));
         jSpinner2.setPreferredSize(new java.awt.Dimension(70, 23));
         jPanel6.add(jSpinner2);
 
@@ -125,20 +155,23 @@ public class View extends javax.swing.JFrame implements ViewObserver {
 
         jPanel1.add(jPanel6, java.awt.BorderLayout.NORTH);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Выходные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Выходные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
         jPanel7.setPreferredSize(new java.awt.Dimension(715, 300));
         jPanel7.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Вероятность превышения трудозатрат %");
+        jPanel15.setPreferredSize(new java.awt.Dimension(518, 45));
+        jPanel15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setText("Сохранить в CSV");
-        jButton2.setToolTipText("Сохранить в CSV");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Вероятность превышения трудозатрат, %");
+        jPanel15.add(jLabel2);
 
         jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTextField2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField2.setEnabled(false);
+        jTextField2.setPreferredSize(new java.awt.Dimension(70, 23));
+        jPanel15.add(jTextField2);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setText("График распределения");
@@ -148,78 +181,165 @@ public class View extends javax.swing.JFrame implements ViewObserver {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel15.add(jButton3);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel7.add(jPanel8, java.awt.BorderLayout.NORTH);
-
-        jScrollPane1.setAutoscrolls(true);
+        jPanel7.add(jPanel15, java.awt.BorderLayout.NORTH);
 
         riskOfWorkingHoursEncreaseTable.setToolTipText("");
         riskOfWorkingHoursEncreaseTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         riskOfWorkingHoursEncreaseTable.setAutoscrolls(false);
         riskOfWorkingHoursEncreaseTable.setFillsViewportHeight(true);
-        riskOfWorkingHoursEncreaseTable.setShowGrid(false);
-        riskOfWorkingHoursEncreaseTable.setShowHorizontalLines(true);
-        riskOfWorkingHoursEncreaseTable.setShowVerticalLines(true);
-        jScrollPane1.setViewportView(riskOfWorkingHoursEncreaseTable);
+        riskOfWorkingHoursEncreaseTable.setShowGrid(true);
+        jScrollPane4.setViewportView(riskOfWorkingHoursEncreaseTable);
 
-        jPanel7.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel7.add(jScrollPane4, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel7, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Трудозатраты", null, jPanel1, "");
         jPanel1.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
-        );
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Входные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel9.setPreferredSize(new java.awt.Dimension(300, 65));
+        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Планируемые трудовые ресурсы, кол-во чел.");
+        jPanel9.add(jLabel4);
+
+        jSpinner3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(65, 0, 1000, 10));
+        jSpinner3.setBorder(null);
+        jSpinner3.setPreferredSize(new java.awt.Dimension(72, 23));
+        jPanel9.add(jSpinner3);
+
+        jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton4.setText("Рассчитать");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton4);
+
+        jPanel2.add(jPanel9, java.awt.BorderLayout.NORTH);
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Выходные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel11.setPreferredSize(new java.awt.Dimension(715, 300));
+        jPanel11.setLayout(new java.awt.BorderLayout());
+
+        jPanel10.setPreferredSize(new java.awt.Dimension(691, 45));
+        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setText("Вероятность недостатка трудовых ресурсов, %");
+        jPanel10.add(jLabel5);
+
+        jTextField1.setBackground(new java.awt.Color(240, 240, 240));
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField1.setEnabled(false);
+        jTextField1.setPreferredSize(new java.awt.Dimension(70, 23));
+        jPanel10.add(jTextField1);
+
+        jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton5.setText("График распределения");
+        jButton5.setToolTipText("График распределения");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton5);
+
+        jPanel11.add(jPanel10, java.awt.BorderLayout.NORTH);
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 402));
+
+        riskOfLackResourcesTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        riskOfLackResourcesTable.setAutoscrolls(false);
+        riskOfLackResourcesTable.setFillsViewportHeight(true);
+        riskOfLackResourcesTable.setName(""); // NOI18N
+        riskOfLackResourcesTable.setShowGrid(true);
+        jScrollPane2.setViewportView(riskOfLackResourcesTable);
+
+        jPanel11.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(jPanel11, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Трудовые ресурсы", null, jPanel2, "");
         jPanel2.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
-        );
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Входные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel12.setPreferredSize(new java.awt.Dimension(300, 65));
+        jPanel12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setText("Планируемый обьём работ, кол-во задач");
+        jPanel12.add(jLabel6);
+
+        jSpinner4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(154, 0, 1000, 10));
+        jSpinner4.setBorder(null);
+        jSpinner4.setPreferredSize(new java.awt.Dimension(78, 23));
+        jPanel12.add(jSpinner4);
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setText("Рассчитать");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButton2);
+
+        jPanel3.add(jPanel12, java.awt.BorderLayout.NORTH);
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Выходные данные", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
+        jPanel13.setPreferredSize(new java.awt.Dimension(715, 300));
+        jPanel13.setLayout(new java.awt.BorderLayout());
+
+        jPanel14.setPreferredSize(new java.awt.Dimension(691, 45));
+        jPanel14.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setText("Вероятность превышения обьёма работ, %");
+        jPanel14.add(jLabel7);
+
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField3.setEnabled(false);
+        jTextField3.setPreferredSize(new java.awt.Dimension(70, 23));
+        jPanel14.add(jTextField3);
+
+        jButton6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton6.setText("График распределения");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton6);
+
+        jPanel13.add(jPanel14, java.awt.BorderLayout.NORTH);
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(452, 402));
+
+        riskOfWorkloadEncreaseTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        riskOfWorkloadEncreaseTable.setAutoscrolls(false);
+        riskOfWorkloadEncreaseTable.setFillsViewportHeight(true);
+        riskOfWorkloadEncreaseTable.setShowGrid(true);
+        jScrollPane3.setViewportView(riskOfWorkloadEncreaseTable);
+
+        jPanel13.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        jPanel3.add(jPanel13, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Обьём работ", null, jPanel3, "");
         jPanel3.getAccessibleContext().setAccessibleName("");
@@ -228,11 +348,11 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 713, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Принятие решений", null, jPanel4, "");
@@ -249,12 +369,36 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        WorkingHoursEncreaseRendererAdapter chartRenderer = 
-                new WorkingHoursEncreaseRendererAdapter(model.getRiskOfWorkingHoursEncrease());
+        WorkingHoursEncreaseChartDecorator chartRenderer = 
+                new WorkingHoursEncreaseChartDecorator(model.getRiskOfWorkingHoursEncrease());
         distributionGraphic.getContentPane().removeAll();
         distributionGraphic.getContentPane().add(chartRenderer.createChartPanel());
         distributionGraphic.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        controller.calcRiskOfLackResources();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        RiskOfLackResourcesChartDecorator chartRenderer = 
+                new RiskOfLackResourcesChartDecorator(model.getRiskOfLackResources());
+        distributionGraphic.getContentPane().removeAll();
+        distributionGraphic.getContentPane().add(chartRenderer.createChartPanel());
+        distributionGraphic.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        controller.calcRiskOfWorkloadEncrease();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        RiskOfWorkloadEncreaseChartDecorator chartRenderer = 
+                new RiskOfWorkloadEncreaseChartDecorator(model.getRiskOfWorkloadEncrease());
+        distributionGraphic.getContentPane().removeAll();
+        distributionGraphic.getContentPane().add(chartRenderer.createChartPanel());
+        distributionGraphic.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
     
     @Override
     public void updateRiskOfWorkingHoursEncrease() {
@@ -265,13 +409,19 @@ public class View extends javax.swing.JFrame implements ViewObserver {
     }
 
     @Override
-    public void updateRiskOfLaborResources() {
-        
+    public void updateRiskOfLackResources() {
+        RiskOfLackResources riskOfLackResources = model.getRiskOfLackResources();
+        jTextField1.setText(String.format("%.2f", riskOfLackResources.getChanceOfLackResources()));
+        RiskOfLackResourcesTable table = (RiskOfLackResourcesTable)riskOfLackResourcesTable;
+        table.reload(riskOfLackResources.getRiskOfLackResourcesList());
     }
-    
+
     @Override
-    public void updateRiskOfExcessWork() {
-        
+    public void updateRiskOfWorkloadEncrease() {
+        RiskOfWorkloadEncrease riskOfWorkloadEncrease = model.getRiskOfWorkloadEncrease();
+        jTextField3.setText(String.format("%.2f", riskOfWorkloadEncrease.getChanceOfWorkloadEncrease()));
+        RiskOfWorkloadEncreaseTable table = (RiskOfWorkloadEncreaseTable)riskOfWorkloadEncreaseTable;
+        table.reload(riskOfWorkloadEncrease.getRiskOfWorkloadEncreaseList());
     }
 
     /**
@@ -286,26 +436,56 @@ public class View extends javax.swing.JFrame implements ViewObserver {
         return (Integer)jSpinner2.getValue();
     }
     
+    public Integer getPlannedResources() {
+        return (Integer)jSpinner3.getValue();
+    }
+    
+    public Integer getPlannedWorkload() {
+        return (Integer)jSpinner4.getValue();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JSpinner jSpinner4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable riskOfLackResourcesTable;
     private javax.swing.JTable riskOfWorkingHoursEncreaseTable;
+    private javax.swing.JTable riskOfWorkloadEncreaseTable;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -1,16 +1,16 @@
-package monte.carlo.model.workinghoursencrease;
+package monte.carlo.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import monte.carlo.utils.Utils;
+import monte.carlo.utils.RandomUtils;
 
 /**
  * Риск превышения трудозатрат
  */
-public class RiskOfWorkingHoursEncrease implements Serializable {
+public class RiskOfWorkingHoursEncrease implements RiskInterface {
+
     private static final long serialVersionUID = 1L;
-    
+
     // ID испытания
     private int id;
     // Распределение трудозатрат при составлении ТЗ
@@ -21,7 +21,7 @@ public class RiskOfWorkingHoursEncrease implements Serializable {
     private int[] distTesting;
     // Планируемые суммарные трудозатраты
     private int plannedWorkingHours;
-    
+
     // трудозатраты при составлении ТЗ
     private int technicalTask;
     // трудозатраты при разработке кода
@@ -31,17 +31,55 @@ public class RiskOfWorkingHoursEncrease implements Serializable {
     // вероятность превышения трудозатрат
     private double chanceOfWorkingHoursEncrease;
     // Результаты испытаний при оценки риска превышения трудозатрат
-    private List<RiskOfWorkingHoursEncrease> riskOfWorkingHoursEncreaseList = new ArrayList<>();
+    private List<RiskInterface> riskOfWorkingHoursEncreaseList = new ArrayList<>();
 
-    public RiskOfWorkingHoursEncrease() {
-    }
-    
+    /**
+     * Значения для генерирования статистических данных выбраны на основе
+     * экспертных мнений.
+     */
+    @Override
     public void init() {
-        distTechnicalTask = Utils.generateStatisticData(20, 70);
-        distDevelopment = Utils.generateStatisticData(110, 180);
-        distTesting = Utils.generateStatisticData(150, 220);
+        distTechnicalTask = RandomUtils.generateStatisticData(20, 70);
+        distDevelopment = RandomUtils.generateStatisticData(110, 180);
+        distTesting = RandomUtils.generateStatisticData(150, 220);
     }
-    
+
+    /**
+     * Алгоритм Расчет риска превышения трудозатрат
+     * 
+     * @param totalTest число испытаний
+     */
+    @Override
+    public void calculate(int totalTest) {
+        // Числов испытаний с превышением трудозатрат
+        int j = 0;
+        getRiskOfWorkingHoursEncreaseList().clear();
+        for (int i = 0; i < totalTest; i++) {
+            RiskOfWorkingHoursEncrease item = new RiskOfWorkingHoursEncrease();
+            item.setId(i + 1);
+            item.setTechnicalTask(RandomUtils.getValueFromDistribution(distTechnicalTask));
+            item.setDevelopment(RandomUtils.getValueFromDistribution(distDevelopment));
+            item.setTesting(RandomUtils.getValueFromDistribution(distTesting));
+            // Фактические трудозатраты
+            int totalSpentHours = item.getTechnicalTask() + item.getDevelopment() + item.getTesting();
+            if (totalSpentHours > getPlannedWorkingHours()) {
+                j++;
+            }
+            item.setChanceOfWorkingHoursEncrease(((double) j / (double) totalTest) * 100D);
+            getRiskOfWorkingHoursEncreaseList().add(item);
+        }
+        setChanceOfWorkingHoursEncrease(((double)j / (double)totalTest) * 100D);
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getDevelopment() {
         return development;
     }
@@ -74,30 +112,6 @@ public class RiskOfWorkingHoursEncrease implements Serializable {
         this.chanceOfWorkingHoursEncrease = chanceOfWorkingHoursEncrease;
     }
 
-    public int[] getDistTechnicalTask() {
-        return distTechnicalTask;
-    }
-
-    public void setDistTechnicalTask(int[] distTechnicalTask) {
-        this.distTechnicalTask = distTechnicalTask;
-    }
-
-    public int[] getDistDevelopment() {
-        return distDevelopment;
-    }
-
-    public void setDistDevelopment(int[] distDevelopment) {
-        this.distDevelopment = distDevelopment;
-    }
-
-    public int[] getDistTesting() {
-        return distTesting;
-    }
-
-    public void setDistTesting(int[] distTesting) {
-        this.distTesting = distTesting;
-    }
-
     public int getPlannedWorkingHours() {
         return plannedWorkingHours;
     }
@@ -106,20 +120,12 @@ public class RiskOfWorkingHoursEncrease implements Serializable {
         this.plannedWorkingHours = plannedWorkingHours;
     }
 
-    public List<RiskOfWorkingHoursEncrease> getRiskOfWorkingHoursEncreaseList() {
+    public List<RiskInterface> getRiskOfWorkingHoursEncreaseList() {
         return riskOfWorkingHoursEncreaseList;
     }
 
-    public void setRiskOfWorkingHoursEncreaseList(List<RiskOfWorkingHoursEncrease> riskOfWorkingHoursEncreaseList) {
+    public void setRiskOfWorkingHoursEncreaseList(List<RiskInterface> riskOfWorkingHoursEncreaseList) {
         this.riskOfWorkingHoursEncreaseList = riskOfWorkingHoursEncreaseList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 }
